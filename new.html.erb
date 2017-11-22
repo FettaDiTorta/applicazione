@@ -1,0 +1,103 @@
+<body bgcolor="#FFFFCC">
+
+<center>
+  <h1>Registration</h1><br><br>
+
+ <%= form_with model: @user, local: true do |form| %>
+    <% if @user.errors.any? %>
+      <div id="error_explanation">
+      <h2>
+        <%= pluralize(@user.errors.count, "error") %> found:
+      </h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :email %><br>
+    <%= form.email_field :email %>
+  </p>
+
+  <p>
+    <t>Password</t><br>
+    <%= form.password_field :password %>
+  </p>
+
+  <p>
+    <t>Password confirmation</t><br>
+    <%= form.password_field :password_confirmation %>
+  </p>
+
+  <p>
+    <%= form.label :name %><br>
+    <%= form.text_field :name %>
+  </p>
+
+  <p>
+    <%= form.label :surname %><br>
+    <%= form.text_field :surname %>
+  </p>
+
+  <p>
+    <%= form.label :phone %><br>
+    <%= form.text_field :phone %>
+  </p>
+
+  <p>
+    <%= form.label :photo %><br>
+    <%= form.file_field :photo %>
+  </p>
+
+  <legend>Registration as<br>
+    
+  <!doctype html>
+  <html>
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+      <!--<title>Esempio</title>-->
+        <style type="text/css">
+          .nascosto {
+          display: none;
+          }
+
+          #c1:checked ~ span.nascosto {
+          display: inline;
+          }
+
+          #c1:checked ~ br.nascosto {
+          display: block;
+          } 
+
+          #c2:checked ~ span.nascosto {
+          display: inline;
+          }
+
+          #c2:checked ~ br.nascosto {
+          display: block;
+          } 
+        </style>
+    </head>
+
+    <form name="c1">
+      <input type="checkbox" name="passenger" id="c1" onchange="document.getElementById('submit').disabled = !document.getElementById('c1').checked && !document.getElementById('c2').checked;"/> Passenger <br>
+      <span class="nascosto"> Ciaooo </span><br class="nascosto" />
+    </form>
+
+    <form name="c2">
+      <input type="checkbox" name="driver" id="c2" onchange="document.getElementById('submit').disabled = !document.getElementById('c2').checked && !document.getElementById('c1').checked;"/> Driver<br/>
+      <span class="nascosto"> Fuck </span><br class="nascosto" />
+    </form>
+  </html>
+
+  <p>
+    <%= form.submit "Submit", id:"submit", disabled: true %>
+  </p>
+  </legend>
+  <% end %>
+
+  <p>Already registred? <%= link_to "Login", login_path %></p>
+</center>
